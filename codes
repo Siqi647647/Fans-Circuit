@@ -1,0 +1,26 @@
+#define MotorControlPin 3
+#define BottonControlPin 4
+void setup(){
+  pinMode(MotorControlPin,OUTPUT);
+  pinMode(BottonControlPin,INPUT);
+  attachInterrupt(digitalPinToInterrupt(BottonControlPin), OnBottonPressed, FALLING);
+}
+  void OnBottonPressed(){
+  int Outputvalue=255;
+  digitalWrite(MotorControlPin, Outputvalue);
+  delay(2000);}
+
+void loop()
+{
+  int Outputvalue;
+  for(Outputvalue=0; Outputvalue<125; Outputvalue++){
+    analogWrite(MotorControlPin, Outputvalue);
+    delay(50);
+  }
+  delay(2000);
+  for(Outputvalue=125; Outputvalue>0; Outputvalue--)
+  {
+    analogWrite(MotorControlPin, Outputvalue);
+    delay(50);
+  }
+  delay(2000);}
